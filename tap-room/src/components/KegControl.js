@@ -13,7 +13,8 @@ class KegControl extends React.Component {
       formVisibleOnPage: false,
       mainKegList: [],
       selectedKeg: null,
-      editing: false,
+      currentKeg: null,
+      editing: false
     };
   }
 
@@ -43,6 +44,18 @@ class KegControl extends React.Component {
       selectedKeg: null
     });
   }
+
+  handleSellPintClick = (kegSellPint) => {
+      // const newQuantity = (parseInt(itemToAddQuantity.quantity) + 1);
+      // kegSellPint.pintsLeft = (parseInt(kegSellPint.pintsLeft) -= 1).toString();
+      console.log(kegSellPint.pintsleft);
+      const sellPintMainKegList = this.state.mainKegList.filter(keg => keg.id !== this.state.selectedKeg.id).concat(kegSellPint);
+      this.setState({
+      mainKegList: sellPintMainKegList,
+      editing: false,
+      selectedKeg: null
+    });
+  } 
 
   handleAddingNewKegToList = (newKeg) => {
     const newMainKegList = this.state.mainKegList.concat(newKeg);
@@ -74,7 +87,7 @@ class KegControl extends React.Component {
       buttonText = "Return to Keg List";
       buttonStyle = "btn btn-warning mt-2";
     } else if(this.state.selectedKeg != null) {
-      currentlyVisibleState = <KegDetail keg = {this.state.selectedKeg} onClickingDelete = {this.handleDeleteKeg} onClickingEdit = {this.handleEditClick} />
+      currentlyVisibleState = <KegDetail keg = {this.state.selectedKeg} onClickingDelete = {this.handleDeleteKeg} onClickingEdit = {this.handleEditClick} onClickingSellPint = {this.handleSellPintClick} />
       buttonText = "Return to Keg List";
       buttonStyle = "btn btn-warning mt-2";
     } else if (this.state.formVisibleOnPage) {

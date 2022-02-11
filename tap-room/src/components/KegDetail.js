@@ -7,14 +7,14 @@ function KegDetail(props){
   return (
     <React.Fragment>
       <h1>Keg Detail</h1>
-      <p>Name: {props.name}</p>
-      <p>Brand: {props.brand}</p>
-      <p>Price: {props.price}</p>
-      <p>Alcohol Content: {props.alcoholContent}</p>
-      <p>Pints Left: {props.pintsLeft}</p>
+      <p>Name: {keg.name}</p>
+      <p>Brand: {keg.brand}</p>
+      <p>Price: {keg.price}</p>
+      <p>Alcohol Content: {keg.alcoholContent}</p>
+      <p>Pints Left: {keg.pintsLeft}</p>
       <button onClick={ props.onClickingEdit }>Update Keg</button>
       <button onClick={ () => props.onClickingDelete(keg.id)}>Delete Keg</button>
-      {/* <button onClick={ () => props.onClickingAddQuantity(keg.id)}>Add Quantity</button> */}
+      <button onClick={ props.onClickingSellPint({pintsLeft: pintsLeft+1})}>Sell Pint</button>
       <hr/>
     </React.Fragment>
   );
@@ -24,7 +24,7 @@ KegDetail.propTypes = {
   keg: PropTypes.object,
   onClickingDelete: PropTypes.func,
   onClickingEdit: PropTypes.func,
-  // onClickingAddQuantity: PropTypes.func
+  onClickingSellPint: PropTypes.func
 };
 
 export default KegDetail;
