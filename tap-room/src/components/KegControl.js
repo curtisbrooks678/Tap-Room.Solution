@@ -45,16 +45,15 @@ class KegControl extends React.Component {
     });
   }
 
-  handleSellPintClick = (kegSellPint) => {
-      // const newQuantity = (parseInt(itemToAddQuantity.quantity) + 1);
-      // kegSellPint.pintsLeft = (parseInt(kegSellPint.pintsLeft) -= 1).toString();
-      console.log(kegSellPint.pintsleft);
-      const sellPintMainKegList = this.state.mainKegList.filter(keg => keg.id !== this.state.selectedKeg.id).concat(kegSellPint);
+  handleSellPintClick = (id) => {
+    let updatedKeg = this.state.mainKegList.filter(keg => keg.id === id)[0];
+    if (updatedKeg.pintsLeft !== 0) {
+      updatedKeg.pintsLeft -= 1;
+      const updatedMainKegList = this.state.mainKegList.filter(keg => keg.id !== id).concat(updatedKeg);
       this.setState({
-      mainKegList: sellPintMainKegList,
-      editing: false,
-      selectedKeg: null
-    });
+        mainKegList: updatedMainKegList
+      })
+    }
   } 
 
   handleAddingNewKegToList = (newKeg) => {
@@ -87,7 +86,7 @@ class KegControl extends React.Component {
       buttonText = "Return to Keg List";
       buttonStyle = "btn btn-warning mt-2";
     } else if(this.state.selectedKeg != null) {
-      currentlyVisibleState = <KegDetail keg = {this.state.selectedKeg} onClickingDelete = {this.handleDeleteKeg} onClickingEdit = {this.handleEditClick} onClickingSellPint = {this.handleSellPintClick} />
+      currentlyVisibleState = <KegDetail keg = {this.state.selectedKeg} onClickingDelete = {this.handleDeleteKeg} onClickingEdit = {this.handleEditClick} />
       buttonText = "Return to Keg List";
       buttonStyle = "btn btn-warning mt-2";
     } else if (this.state.formVisibleOnPage) {
@@ -95,7 +94,7 @@ class KegControl extends React.Component {
       buttonText = "Return to Keg List";
       buttonStyle = "btn btn-danger";
     } else {
-      currentlyVisibleState = <KegList kegList={this.state.mainKegList} onKegSelection={this.handleChangingSelectedKeg}/>;
+      currentlyVisibleState = <KegList kegList={this.state.mainKegList}  onClickingSellPint = {this.handleSellPintClick} onKegSelection={this.handleChangingSelectedKeg}/>;
       buttonText = "Add a new keg!";
       buttonStyle = "btn btn-info mt-2";
     }
