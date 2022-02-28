@@ -26,7 +26,7 @@ _Practice project for using React and functional programming. Full CRUD function
 ## Setup/Installation Requirements
 
 * _Run `git clone https://github.com/curtisbrooks678/Tap-Room.Solution` from the terminal to clone the project directory to your device._
-* _cd into the project directory then run `npm install` to set up the environment and install all the npm packages._
+* _cd into the project directory, then cd into the tap-room directory, then run `npm install` to set up the environment and install all the npm packages._
 * _Run `npm start` from the terminal to build the project and start a live server._
 * _Navigate to `localhost:3000` in your favorite web browser to enjoy the project._
 
