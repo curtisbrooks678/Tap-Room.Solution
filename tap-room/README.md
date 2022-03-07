@@ -2,7 +2,7 @@
 
 #### By _**Curtis Brooks**_
 
-#### _A practice for using React to show an online tap room with full CRUD functionality for kegs._
+#### _A practice application for using React to show an online tap room with full CRUD functionality for kegs._
 
 ## Technologies Used
 
